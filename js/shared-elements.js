@@ -1,7 +1,7 @@
 async function loadSharedElements() {
     const [headerResponse, overlaysResponse] = await Promise.all([
-        fetch("html/header.html"),
-        fetch("html/overlays.html")
+        fetch("/html/header.html"),
+        fetch("/html/overlays.html")
     ]);
 
     if (!headerResponse.ok || !overlaysResponse.ok) {
@@ -17,7 +17,7 @@ async function loadSharedElements() {
     document.getElementById("overlay-container").innerHTML = overlaysHtml;
 
     const script = document.createElement('script');
-    script.src = 'js/main.js';
+    script.src = '/js/main.js';
     script.type = 'module';
     document.body.appendChild(script);
 }

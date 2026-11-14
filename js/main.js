@@ -1,5 +1,8 @@
-//Importit
-import { Item, Inventory, User } from '../js/inventoryclasses.js';
+//Importit ja tiedostojen polut
+
+import { Item, Inventory, User } from './inventoryclasses.js';
+
+const itemListPath = './json/itemlist.json';
 
 // HTML DOM elementit
 
@@ -203,7 +206,7 @@ createAccountButton.addEventListener('click', () => {
 
 const maxItems = 108; // Sopii just kivasti tohon ikkunaan 108 slottia
 
-const itemList = JSON.parse(await fetch('json/itemlist.json').then(res => res.text()));
+const itemList = JSON.parse(await fetch(itemListPath).then(res => res.text()));
 
 let user;
 
