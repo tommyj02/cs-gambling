@@ -1,5 +1,5 @@
 //Importit
-import { Item, Inventory, User } from '/js/inventoryclasses.js';
+import { Item, Inventory, User } from '../js/inventoryclasses.js';
 
 // HTML DOM elementit
 
