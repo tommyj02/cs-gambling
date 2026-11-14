@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlays</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<div id="inv-overlay" class="inv-overlay" hidden>
+    <div class="inv-overlay-content">
+        <h2>Inventory</h2>
+        <div id="inv-items" class="inv-items" style="overflow-y: auto; height:600px; width: 1000px"></div>
+        <button id="close-inv-overlay" class="close-overlay">Close</button>
+    </div>
+</div>
+
+<div id="deposit-overlay" class="inv-overlay" hidden>
+    <div class="deposit-overlay-content">
+        <h2>Deposit</h2>
+        <div id="deposit-content">
+            <div class="visa" id="visa-option">
+                <img src="images/visalogo.png" alt="Visa" class="visalogo"/>
+                <p>Visa</p>
+            </div>
+        </div>
+        <button id="close-deposit-overlay" class="close-overlay">Close</button>
+    </div>
+</div>
+
+<div id="visa-overlay" class="inv-overlay" hidden>
+    <div class="visa-overlay-content">
+        <div class="back-container">
+            <button id="back-visa-overlay" class="overlay-back">← Back to deposit options</button>
+        </div>
+        <div class="visa-deposit">
+            <h2>Visa Payment</h2>
+            <p>Please enter the amount of balance you wish to deposit</p>
+            <input type="number" id="deposit-amount" class="deposit-amount" placeholder="Enter amount" min="1" />
+            <p>Please enter your card details below</p>
+            <p class="visa-error" id="visa-error" hidden></p>
+            <div id="visa-credentials" class="visa-credentials">
+                <input type="text" id="visa-card-number" class="visa-card-input" placeholder="Card Number" />
+                <input type="text" id="visa-card-expiry" class="visa-card-input" placeholder="MM/YY" />
+                <input type="text" id="visa-card-cvc" class="visa-card-input" placeholder="CVC" />
+            </div>
+            <button id="submit-visa-deposit" class="submit-visa-deposit">Deposit</button>
+            <button id="close-visa-overlay" class="close-overlay">Close</button>
+        </div>
+    </div>
+</div>
+
+<div id="deposit-complete-overlay" class="inv-overlay" hidden>
+    <div class="inv-overlay-content">
+        <h2>Deposit Complete</h2>
+        <p id="deposit-complete-message">Your deposit has been successfully processed.</p>
+        <button id="close-deposit-complete-overlay" class="close-overlay">Close</button>
+    </div>
+</div>
+
+<div id="account-overlay" class="inv-overlay" hidden>
+    <div class="inv-overlay-content">
+        <h2>Create an account</h2>
+        <input type="text" id="account-username" class="account-input" placeholder="Username" />
+        <input type="password" id="account-password" class="account-input" placeholder="Password" />
+        <p class="account-error" id="account-error" hidden></p>
+        <button id="create-account" class="create-account">Create Account</button>
+        <button id="close-account-overlay" class="close-overlay">Close</button>
+    </div>
+</div>
+
+</html>

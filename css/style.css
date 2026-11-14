@@ -1,0 +1,354 @@
+:root {
+    --maincolor: #2e2a55;
+    --secondarycolor: #1c1c3f;
+    --hovercolor: #242047;
+    --secondaryhovercolor: rgb(16, 16, 46);
+}
+
+body{
+    margin: 0px;
+    
+    background-color: var(--maincolor);
+    font-family: Arial, sans-serif;
+}
+
+.header-container h1{
+    color: #000000;
+    text-align: left;
+    margin: 0px;
+}
+
+.header-container h1 a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.header-container select{
+    background-color: var(--maincolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.header-container button{
+    background-color: var(--maincolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 30px;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+
+#deposit-button{
+    margin-left: auto;
+    background-color: hsl(56, 100%, 57%);
+    
+}
+
+
+
+#games-dropdown option:checked{
+    background-color: var(--maincolor);
+    color: #000000;
+}
+
+#games-dropdown option:disabled {
+    color: #0e0e0e;
+    background-color: var(--maincolor);
+}
+
+.header-container{
+    background-color: var(--secondarycolor);
+    margin: 0px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.coin-icon{
+    width: 20px;
+    height: 20px;
+}
+
+#balance-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--maincolor);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#balance{
+    margin: 0px;
+    line-height: 20px;
+}
+
+
+
+
+
+.main-content{
+    margin-top: 40px;
+    text-align: center;
+}
+
+
+
+.inv-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inv-overlay-content {
+    background-color: var(--secondarycolor);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inv-overlay[hidden] {
+    display: none;
+}
+
+.close-overlay {
+    background-color: var(--maincolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 30px;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+
+.inv-items{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 20px;
+
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--maincolor) var(--secondarycolor);
+}
+
+.inv-item-img {
+    width: 100%;
+    height: 55px;
+    min-height: 0px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.inv-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.inv-slot {
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: var(--maincolor);
+    border: 1px solid var(--maincolor);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: var(--hovercolor);
+}
+
+.deposit-overlay-content {
+    background-color: var(--secondarycolor);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 30%;
+}
+
+.visa:hover {
+    background-color: var(--hovercolor);
+}
+
+.visa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: var(--maincolor);
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+.visalogo {
+    width: 100px;
+    height: auto;
+}
+
+.visa-overlay-content {
+    position: relative;
+    background-color: var(--secondarycolor);
+    width: 50%;
+    height: 50%;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.visa-deposit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#close-visa-overlay {
+    background-color: var(--maincolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+    position: absolute;
+    bottom: 20px;
+}
+
+.submit-visa-deposit {
+    background-color: var(--maincolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+
+.back-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.overlay-back {
+    background-color: var(--secondarycolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 10px;
+    line-height: 0px;
+    cursor: pointer;
+    align-self: center;
+}
+.overlay-back:hover {
+    background-color: var(--secondarycolor);
+}
+
+.visa-card-input {
+    background-color: var(--maincolor);
+    padding: 5px 10px;
+    border: 1px solid var(--maincolor);
+    border-radius: 5px;
+    width: 40%;
+    text-align: center;
+}
+
+.visa-credentials {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.deposit-amount {
+    background-color: var(--maincolor);
+    padding: 5px 10px;
+    border: 1px solid var(--maincolor);
+    border-radius: 5px;
+    width: 40%;
+    text-align: center;
+}
+
+.deposit-amount::-webkit-inner-spin-button, 
+.deposit-amount::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.visa-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.visa-error[hidden] {
+    display: none;
+}
+
+.account-input {
+    background-color: var(--maincolor);
+    padding: 5px 10px;
+    border: 1px solid var(--maincolor);
+    border-radius: 5px;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+}
+
+.create-account {
+    background-color: var(--maincolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+
+.account-data {
+    background-color: var(--secondarycolor);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
