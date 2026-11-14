@@ -1,8 +1,8 @@
 //Importit ja tiedostojen polut
 
-import { Item, Inventory, User } from './inventoryclasses.js';
-
-const itemListPath = './json/itemlist.json';
+import { Inventory, User } from './inventoryclasses.js';
+import { updateInventoryDisplay } from './inventory.js';
+import { user, setUser } from './user-state.js';
 
 // HTML DOM elementit
 
@@ -51,6 +51,8 @@ const accountError = document.getElementById('account-error');
 
 accountError.hidden = true;
 
+
+const skinsButton = document.getElementById('skins-button');
 
 // Event listenerit
 
@@ -192,8 +194,7 @@ createAccountButton.addEventListener('click', () => {
         return;
     }
 
-    user = new User(username, 0, new Inventory());
-    localStorage.setItem('user', JSON.stringify(user));
+    setUser(new User(username, 0, new Inventory()));
     accountOverlay.hidden = true;
     accountError.hidden = true;
     
@@ -202,54 +203,16 @@ createAccountButton.addEventListener('click', () => {
     updateAccountDisplay(user);
 });
 
+skinsButton.addEventListener('click', () => {
+    location.href = 'skins.html';
+});
+
 // Variablet
-
-const maxItems = 108; // Sopii just kivasti tohon ikkunaan 108 slottia
-
-const itemList = JSON.parse(await fetch(itemListPath).then(res => res.text()));
-
-let user;
-
-
-const savedUser = localStorage.getItem('user');
-if (savedUser) {
-    const userData = JSON.parse(savedUser);
-    const inventoryItems = userData.inventory && Array.isArray(userData.inventory.items) ? userData.inventory.items : [];
-    user = new User(userData.name, userData.balance, new Inventory(inventoryItems));
-}
 
 updateBalanceDisplay(user);
 updateAccountDisplay(user);
 
-function updateInventoryDisplay(user) {
-    inventoryItemsContainer.innerHTML = '';
-    var invSlots = [];
-    for (let i = 0; i < maxItems; i++) {
-        const itemSlotElement = document.createElement('div');
-        itemSlotElement.classList.add('inv-slot');
-        inventoryItemsContainer.appendChild(itemSlotElement);
-        invSlots.push(itemSlotElement);
-    }
 
-    itemList.forEach(itemData => {
-        user.addItemToInventory(new Item(itemData.name, itemData.value, `images/${itemData.image}`));
-    });
-
-    user.inventory.items.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('inv-item');
-        const itemImage = document.createElement('img');
-        itemImage.src = item.image;
-        itemImage.classList.add('inv-item-img');
-        itemElement.appendChild(itemImage);
-        itemElement.append(`${item.name}`);
-        const emptySlot = invSlots.find(slot => !slot.hasChildNodes());
-        if (emptySlot) {
-            emptySlot.appendChild(itemElement);
-        }
-    });
-    saveData(user);
-}
 
 function addBalance(amount) {
     if (!user) return;
@@ -269,9 +232,4 @@ function updateAccountDisplay(user) {
     }else{
         accountButton.innerHTML = 'Login';
     }
-}
-
-function saveData(user) {
-    if (!user) return;
-    localStorage.setItem('user', JSON.stringify(user));
 }

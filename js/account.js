@@ -1,5 +1,6 @@
 const depositedAmountElement = document.getElementById('deposited-amount');
 const accountNameElement = document.getElementById('account-name');
+const resetButton = document.getElementById('reset-button');
 
 let deposited = localStorage.getItem('deposited');
 let accountName = JSON.parse(localStorage.getItem('user'))?.name;
@@ -14,4 +15,15 @@ if (deposited) {
     depositedAmountElement.textContent = 'Total deposited: ' + deposited;
 }else{
     depositedAmountElement.textContent = 'You have not deposited any amount yet.';
+}
+
+resetButton.addEventListener('click', () => {
+    resetAccountData();
+    location.reload();
+});
+
+
+function resetAccountData() {
+    localStorage.removeItem('deposited');
+    localStorage.removeItem('user');
 }

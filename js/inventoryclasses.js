@@ -1,3 +1,5 @@
+import { saveData } from './user-storage.js';
+
 export class Item {
     constructor(name, value, image) {
         this.name = name;
@@ -35,17 +37,21 @@ export class User {
         this.name = name;
         this.balance = balance;
         this.inventory = inventory || new Inventory();
+        saveData(this);
     }
 
     deposit(amount) {
         this.balance += amount;
+        saveData(this);
     }
 
     addItemToInventory(item) {
         this.inventory.addItem(item);
+        saveData(this);
     }
 
     removeItemFromInventory(item) {
         this.inventory.removeItem(item);
+        saveData(this);
     }
 }

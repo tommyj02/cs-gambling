@@ -166,6 +166,7 @@ body{
     height: 100%;
     font-size: 12px;
     overflow-wrap: anywhere;
+    text-align: center;
 }
 
 .inv-slot {
@@ -181,6 +182,18 @@ body{
 
 button:hover {
     background-color: var(--hovercolor);
+    transition: transform 0.2s;
+    transform: scale(1.05);
+}
+
+button{
+    background-color: var(--maincolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 30px;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .deposit-overlay-content {
@@ -351,4 +364,70 @@ button:hover {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+}
+
+.reset-account {
+    background-color: var(--secondarycolor);
+    width: 8%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.reset-button {
+    background-color: var(--maincolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.skins-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+    width: 50%;
+}
+
+.skins-list {
+    background-color: var(--secondarycolor);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.skin-search {
+    padding: 10px;
+    border: 1px solid var(--maincolor);
+    border-radius: 5px;
+    width: 20%;
+    box-sizing: border-box;
+    align-self: center;
 }
