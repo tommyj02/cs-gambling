@@ -1,4 +1,5 @@
 import { Item } from './inventoryclasses.js';
+import { user } from './user-state.js';
 
 const itemListPath = './json/itemlist.json';
 
@@ -28,7 +29,7 @@ inventoryOverlay.addEventListener('click', (event) => {
 
 const maxItems = 108; // Sopii just kivasti tohon ikkunaan 108 slottia
 
-const itemList = JSON.parse(await fetch(itemListPath).then(res => res.text())); 
+//const itemList = JSON.parse(await fetch(itemListPath).then(res => res.text())); 
 
 
 export function updateInventoryDisplay(user) {

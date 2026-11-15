@@ -14,3 +14,8 @@ if (savedUser) {
 export function setUser(newUser) {
     user = newUser;
 }
+
+export function saveData(user) {
+    if (!user) return;
+    localStorage.setItem('user', JSON.stringify(user));
+}

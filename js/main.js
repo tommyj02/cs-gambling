@@ -1,7 +1,6 @@
 //Importit ja tiedostojen polut
 
 import { Inventory, User } from './inventoryclasses.js';
-import { updateInventoryDisplay } from './inventory.js';
 import { user, setUser } from './user-state.js';
 
 // HTML DOM elementit
@@ -15,14 +14,7 @@ const accountButton = document.getElementById('account-button');
 const visaOverlay = document.getElementById('visa-overlay');
 const closeVisaOverlay = document.getElementById('close-visa-overlay');
 
-
 const balanceDisplay = document.getElementById('balance');
-
-
-const closeInventoryOverlay = document.getElementById('close-inv-overlay');
-const inventoryOverlay = document.getElementById('inv-overlay');
-const inventoryItemsContainer = document.getElementById('inv-items');
-
 
 const depositOverlay = document.getElementById('deposit-overlay');
 const closeDepositOverlay = document.getElementById('close-deposit-overlay');
@@ -70,21 +62,6 @@ gamesDropdown.addEventListener('change', (event) => {
 
 //---------------Overlay event listenerit-----------------
 
-inventoryButton.addEventListener('click', () => {
-    inventoryOverlay.hidden = false;
-    updateInventoryDisplay(user);
-    
-});
-
-closeInventoryOverlay.addEventListener('click', () => {
-    inventoryOverlay.hidden = true;
-});
-
-inventoryOverlay.addEventListener('click', (event) => {
-    if (event.target === inventoryOverlay) {
-        inventoryOverlay.hidden = true;
-    }
-});
 
 depositButton.addEventListener('click', () => {
     depositOverlay.hidden = false;
