@@ -10,7 +10,7 @@
 <div id="inv-overlay" class="inv-overlay" hidden>
     <div class="inv-overlay-content">
         <h2>Inventory</h2>
-        <div id="inv-items" class="inv-items" style="overflow-y: auto; height:600px; width: 1000px"></div>
+        <div id="inv-items" class="inv-items"></div>
         <button id="close-inv-overlay" class="close-overlay">Close</button>
     </div>
 </div>
@@ -51,7 +51,7 @@
 </div>
 
 <div id="deposit-complete-overlay" class="inv-overlay" hidden>
-    <div class="inv-overlay-content">
+    <div class="deposit-complete-content">
         <h2>Deposit Complete</h2>
         <p id="deposit-complete-message">Your deposit has been successfully processed.</p>
         <button id="close-deposit-complete-overlay" class="close-overlay">Close</button>
@@ -59,7 +59,7 @@
 </div>
 
 <div id="account-overlay" class="inv-overlay" hidden>
-    <div class="inv-overlay-content">
+    <div class="acc-overlay-content">
         <h2>Create an account</h2>
         <input type="text" id="account-username" class="account-input" placeholder="Username" />
         <input type="password" id="account-password" class="account-input" placeholder="Password" />
@@ -73,6 +73,14 @@
     <div class="inv-overlay-content">
         <p id="skin-added-message">The skin has been successfully added to your inventory.</p>
         <button id="close-skin-added-overlay" class="close-overlay">Close</button>
+    </div>
+</div>
+
+<div id="no-acc-overlay" class="inv-overlay" hidden>
+    <div class="inv-overlay-content">
+        <p id="no-acc-message">No account is currently logged in.</p>
+        <button id="login-button" class="create-account">Create an account</button>
+        <button id="close-no-acc-overlay" class="close-overlay">Close</button>
     </div>
 </div>
 

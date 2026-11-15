@@ -1,5 +1,5 @@
-import { Item } from './inventoryclasses.js';
 import { user } from './user-state.js';
+import { showNoAccountOverlay } from './no-account.js';
 
 const itemListPath = './json/itemlist.json';
 
@@ -33,6 +33,13 @@ const maxItems = 108; // Sopii just kivasti tohon ikkunaan 108 slottia
 
 
 export function updateInventoryDisplay(user) {
+
+    if (!user) {
+        inventoryOverlay.hidden = true;
+        showNoAccountOverlay();
+        return;
+    }
+
     inventoryItemsContainer.innerHTML = '';
     var invSlots = [];
     for (let i = 0; i < maxItems; i++) {
@@ -51,6 +58,29 @@ export function updateInventoryDisplay(user) {
         itemImage.classList.add('inv-item-img');
         itemElement.appendChild(itemImage);
         itemElement.append(`${item.name}`);
+
+        const sellOverlay = document.createElement('div');
+        sellOverlay.classList.add('sell-item');
+
+        const sellButton = document.createElement('button');
+        sellButton.type = 'button';
+        sellButton.textContent = 'Sell';
+
+        sellButton.addEventListener('click', () => {
+            user.removeItemFromInventory(item);
+            user.deposit(item.value);
+            document.getElementById('balance').textContent = user.balance.toFixed(2);
+            updateInventoryDisplay(user);
+        });
+
+        const valueText = document.createElement('span');
+        valueText.textContent = `Value: ${item.value.toFixed(2)}`;
+        valueText.classList.add('item-value');
+
+        sellOverlay.appendChild(valueText);
+        sellOverlay.appendChild(sellButton);
+        itemElement.appendChild(sellOverlay);
+
         const emptySlot = invSlots.find(slot => !slot.hasChildNodes());
         if (emptySlot) {
             emptySlot.appendChild(itemElement);

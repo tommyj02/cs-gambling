@@ -2,13 +2,13 @@
 
 import { Inventory, User } from './inventoryclasses.js';
 import { user, setUser } from './user-state.js';
+import './inventory.js';
 
 // HTML DOM elementit
 
 
 
 const gamesDropdown = document.getElementById('games-dropdown');
-const inventoryButton = document.getElementById('inv-button');
 const depositButton = document.getElementById('deposit-button');
 const accountButton = document.getElementById('account-button');
 const visaOverlay = document.getElementById('visa-overlay');
@@ -183,6 +183,14 @@ createAccountButton.addEventListener('click', () => {
 skinsButton.addEventListener('click', () => {
     location.href = 'skins.html';
 });
+
+
+if (!user && location.hash === '#register') {
+    accountOverlay.hidden = false;
+    history.replaceState(null, '', location.pathname + location.search);
+}
+
+
 
 // Variablet
 

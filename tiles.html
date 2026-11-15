@@ -6,12 +6,55 @@
     <title>CS Gambling</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="tiles-page">
 
     <div id="overlay-container"></div>
 
     <div id="header-container"></div>
 
+
+    <main class="main-container">
+        <div class="tiles-windows-container">
+
+            <h1 class="tiles-title">Tiles</h1>
+            <div class="game-container">
+                <div id="game-options" class="game-options">
+                    <h1 class="tiles-title">Game Options</h1>
+                    <div class="game-type">
+                        <button class="game-type-button" id="manual-button" aria-pressed="false">Manual</button>
+                        <button class="game-type-button" id="auto-button" aria-pressed="true">Auto</button>
+                    </div>
+                    <span class="bet-amount">Bet amount</span>
+                    <div class="bet-amount-container">
+                        <img src="images/coins2.png" alt="Coin" class="bet-amount-icon">
+                        <input class="bet-amount-input" id="bet-amount-input" type="number" min="0" step="0.1">
+                        <button class="max-bet-button" id="max-bet-button">Max</button>
+                    </div>
+                    <div class="tile-pick-container">
+                        <button class="auto-pick" id="auto-pick-button">Auto Pick</button>
+                        <button class="reset-button" id="reset-button">Clear Tiles</button>
+                    </div>                    
+                    <div class="auto-play-container" id="auto-play-container" hidden>                  
+                        <div class="play-amount-container">
+                            <input class="play-amount-input" id="play-amount-input" type="number" min="0" step="1" placeholder="Bets">
+                            <button class="infinite-play-button" id="infinite-play-button" aria-pressed="false">Infinite</button>
+                        </div>
+                        <button class="start-button" id="start-button" aria-pressed="false">Start</button>
+                    </div>
+                    <div class="manual-play-container" hidden>
+                        <button class="quick-play-button" id="quick-play-button" aria-pressed="false">Quick Play</button>
+                        <button class="play-button" id="play-button" aria-pressed="false">Play</button>
+                    </div>
+                </div>
+
+                <div id="tiles-container" class="tiles-container">
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
     <script src="js/shared-elements.js"></script>
+    <script type="module" src="js/tiles.js"></script>
 </body>
 </html>

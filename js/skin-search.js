@@ -7,6 +7,8 @@ const itemList = JSON.parse(await fetch(itemListPath).then(res => res.text()));
 const skinSearch = document.getElementById('skin-search');
 const skinsList = document.getElementById('skins-list');
 
+const skinAddedOverlay = document.getElementById('skin-added-overlay');
+
 skinSearch.addEventListener('input', () => {
     const searchFor = skinSearch.value.toLowerCase();
     const foundItems = itemList.filter(item => item.name.toLowerCase().includes(searchFor) || item.id.toString().includes(searchFor));
@@ -29,6 +31,17 @@ skinSearch.addEventListener('input', () => {
                 return;
             }
             user.addItemToInventory(new Item(item.name, item.value, item.image));
+            skinAddedOverlay.hidden = false;
+
+            skinAddedOverlay.addEventListener('click', (event) => {
+                if (event.target === skinAddedOverlay) {
+                    skinAddedOverlay.hidden = true;
+                }
+            });
+
+            setTimeout(() => {
+                skinAddedOverlay.hidden = true;
+            }, 2000);
         });
 
         itemElement.appendChild(addButton);
