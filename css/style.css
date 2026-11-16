@@ -6,6 +6,7 @@
     --tilestextcolor: #746e9c;
     --selectedcolor: #444488;
     --selectedhovercolor: #5555aa;
+    --hitcolor: #00ff22;
 }
 
 body{
@@ -718,6 +719,7 @@ body.tiles-page {
 
 .tiles-container {
     background-color: var(--maincolor);
+    position: relative;
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     grid-auto-rows: repeat(5, minmax(50px, auto));
@@ -766,6 +768,19 @@ body.tiles-page {
     color: var(--maincolor);
 }
 
+.tile-hit {
+    background-color: var(--hitcolor);
+}
+
+#ball-canvas {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
 
 
 

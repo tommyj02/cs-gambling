@@ -1,5 +1,6 @@
 import { user } from './user-state.js';
 
+
 const gameTypeButtons = {
     auto: document.getElementById('auto-button'),
     manual: document.getElementById('manual-button')
@@ -57,6 +58,9 @@ if (!user) {
             location.href = 'index.html';
         }
     });
+}else{
+    startButton.disabled = true;
+    playButton.disabled = true;
 }
 
 autoPlayContainer.hidden = false;
@@ -78,13 +82,22 @@ gameTypeButtons.manual.addEventListener('click', () => {
 });
 
 betAmountInput.addEventListener('input', () => {
-    if (betAmountInput.value !== '') {
+    if (betAmountInput.value == 0) {
+        betAmount = 0;
+        startButton.disabled = true;
+        playButton.disabled = true;
+    }else if (betAmountInput.value !== '') {
+        startButton.disabled = false;
+        playButton.disabled = false;
         if (parseFloat(betAmountInput.value) > user.balance) {
             betAmountInput.value = user.balance;
         }
         betAmount = parseFloat(betAmountInput.value);
-    } else {
+    } 
+    else {
         betAmount = 0;
+        startButton.disabled = true;
+        playButton.disabled = true;
     }
     betAmountInput.value = betAmount;
 });
@@ -92,6 +105,13 @@ betAmountInput.addEventListener('input', () => {
 maxBetButton.addEventListener('click', () => {
     betAmount = user.balance;
     betAmountInput.value = betAmount;
+    if(user.balance == 0) {
+        startButton.disabled = true;
+        playButton.disabled = true;
+    }else{
+        startButton.disabled = false;
+        playButton.disabled = false;
+    }
 });
 
 infinitePlayButton.addEventListener('click', () => {
@@ -103,6 +123,9 @@ infinitePlayButton.addEventListener('click', () => {
 });
 
 startButton.addEventListener('click', () => {
+
+    if(selectedTiles.length === 0) return;
+
     if (startButton.getAttribute('aria-pressed') === 'true') {
         startButton.setAttribute('aria-pressed', 'false');
         startButton.textContent = 'Start';
@@ -122,23 +145,31 @@ playAmountInput.addEventListener('input', () => {
 });
 
 playButton.addEventListener('click', () => {
+
+    if(selectedTiles.length === 0) return;
+
     if (playButton.getAttribute('aria-pressed') === 'true') {
         return;
     } else {
+        if(finishedDrops){
+            tiles.forEach(tile => {
+                tile.classList.remove('tile-hit');
+            });
+        }
+        finishedDrops = false;
         playButton.setAttribute('aria-pressed', 'true');
-        setTimeout(() => {
-            playButton.setAttribute('aria-pressed', 'false');
-        }, playSpeed);
+        handleManualBet();
+        
     }
 });
 
 quickPlayButton.addEventListener('click', () => {
     if (quickPlayButton.getAttribute('aria-pressed') === 'true') {
         quickPlayButton.setAttribute('aria-pressed', 'false');
-        playSpeed = 2000;
+        playSpeed = 300;
     } else {
         quickPlayButton.setAttribute('aria-pressed', 'true');
-        playSpeed = 500;
+        playSpeed = 50;
     }
 });
 
@@ -173,13 +204,15 @@ tiles.forEach(tile => {
     });
 });
 
-let playSpeed = 2000;
+let playSpeed = 300;
 
 let gameType = 'auto';
 
 let betAmount = 0;
 
 let bets = 0;
+
+let finishedDrops = true;
 
 function selectTile(tile) {
     if (!selectedTiles.includes(tile)) {
@@ -206,6 +239,7 @@ function selectTile(tile) {
 function unselectTile(tile) {
     selectedTiles.splice(selectedTiles.indexOf(tile), 1);
     tile.classList.remove('tile-selected');
+    tile.classList.remove('tile-hit');
     tile.style.transform = 'scale(1)';
 
     tiles.forEach(t => {
@@ -218,7 +252,7 @@ function unselectTile(tile) {
 
 function randomTileSelect() {
     tiles.forEach(tile => {
-        let pick = Math.random() < 0.5;
+        let pick = Math.random() < 0.1;
         if (pick) {
             selectTile(tile);
         }
@@ -229,7 +263,7 @@ function randomTileSelect() {
 }
 
 function clearTileSelection() {
-    selectedTiles.forEach(tile => {
+    [...selectedTiles].forEach(tile => {
         unselectTile(tile);
     });
 }
@@ -237,3 +271,104 @@ function clearTileSelection() {
 function handleAutoBets() {
     
 }
+
+
+function handleManualBet() {
+    balls.length = 0;
+    let hits = [];
+    for(let i = 0; i < selectedTiles.length; i++) {
+        let hit = Math.floor(Math.random() * tiles.length);
+        if (hits.includes(hit)) {
+            i--;
+        } else {
+            console.log(`Hit: ${hit}`);
+            hits.push(hit);
+        }
+    }
+    hits.forEach((hit, index) => {
+        
+        const tile = tiles[hit];
+        drawBall(tile, index * playSpeed);
+        
+        
+    });
+
+    const prevPlayedAmount = localStorage.getItem('tilesPlayed');
+    localStorage.setItem('tilesPlayed', prevPlayedAmount ? (parseFloat(prevPlayedAmount) + betAmount).toFixed(2) : betAmount.toFixed(2));
+    
+}
+
+function handleTileHit(tile) {
+    if (selectedTiles.includes(tile)) {
+        
+        tile.classList.add('tile-hit');
+    }
+}
+
+const canvas = document.getElementById('ball-canvas');
+const ctx = canvas.getContext('2d');
+let balls = [];
+
+function resizeCanvas() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+}
+
+
+
+
+function drawBall(tile, delay) {
+    balls.push({
+        tile: tile,
+        startTime: performance.now() + delay
+    });
+}
+
+
+function runAnimation(currentTime) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const canvasRect = canvas.getBoundingClientRect();
+
+
+    balls = balls.filter(ball => {
+        if (currentTime >= ball.startTime + 500) {
+            if (selectedTiles.includes(ball.tile)) {
+                
+                handleTileHit(ball.tile);
+            }
+            return false; // Poistaa pallon
+        }
+        return true; 
+    });
+
+    balls.forEach(ball => {
+        if (currentTime < ball.startTime) return;
+        const tileRect = ball.tile.getBoundingClientRect();
+        const x = tileRect.left - canvasRect.left + tileRect.width / 2;
+        const targetY = tileRect.top - canvasRect.top + tileRect.height / 2;
+
+        const progress = Math.min((currentTime - ball.startTime) / 500, 1);
+        const easedProgress = progress * progress;
+        const y = targetY - 500 * (1 - easedProgress);
+
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, Math.PI * 2);
+        ctx.fillStyle = 'black';
+        ctx.fill();
+    });
+
+    if(balls.length === 0 && !finishedDrops) {
+        finishedDrops = true;
+        setTimeout(() => {
+            playButton.setAttribute('aria-pressed', 'false');
+        }, 300);
+    }
+
+    requestAnimationFrame(runAnimation);
+}
+
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+requestAnimationFrame(runAnimation);
