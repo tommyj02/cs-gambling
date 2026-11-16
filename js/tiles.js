@@ -28,10 +28,17 @@ const tilesContainer = document.getElementById('tiles-container');
 
 const tileAmount = 40;
 
+let tiles = []; 
+
 for (let i = 0; i < tileAmount; i++) {
     const tile = document.createElement('div');
     tile.classList.add('tile');
+    const tileNumber = document.createElement('h1');
+    tileNumber.classList.add('tile-number');
+    tileNumber.textContent = i + 1;
+    tile.appendChild(tileNumber);
     tilesContainer.appendChild(tile);
+    tiles.push(tile);
 }
 
 if (!user) {
@@ -135,6 +142,37 @@ quickPlayButton.addEventListener('click', () => {
     }
 });
 
+resetButton.addEventListener('click', () => {
+    clearTileSelection();
+});
+
+autoPickButton.addEventListener('click', () => {
+    if (selectedTiles.length < maxTiles) {
+        randomTileSelect();
+    }else{
+        clearTileSelection();
+        randomTileSelect();
+    }
+});
+
+const maxTiles = 10;
+
+let selectedTiles = [];
+
+tiles.forEach(tile => {
+    tile.addEventListener('click', () => {
+        if (selectedTiles.includes(tile)) {
+
+            unselectTile(tile);
+            return;
+
+        } else {
+            selectTile(tile);
+            return;
+        }
+    });
+});
+
 let playSpeed = 2000;
 
 let gameType = 'auto';
@@ -142,6 +180,59 @@ let gameType = 'auto';
 let betAmount = 0;
 
 let bets = 0;
+
+function selectTile(tile) {
+    if (!selectedTiles.includes(tile)) {
+        if (selectedTiles.length < maxTiles) {
+            selectedTiles.push(tile);
+            tile.classList.add('tile-selected');
+            tile.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                tile.style.transform = 'scale(1)';
+            }, 500);
+
+            if (selectedTiles.length === maxTiles) {
+                tiles.forEach(t => {
+                    if (!selectedTiles.includes(t)) {
+                        t.classList.add('tile-disabled');
+                        t.style.pointerEvents = 'none';
+                    }
+                });
+            }
+        }
+    }
+}
+
+function unselectTile(tile) {
+    selectedTiles.splice(selectedTiles.indexOf(tile), 1);
+    tile.classList.remove('tile-selected');
+    tile.style.transform = 'scale(1)';
+
+    tiles.forEach(t => {
+        if (!selectedTiles.includes(t)) {
+            t.classList.remove('tile-disabled');
+            t.style.pointerEvents = 'auto';
+        }
+    });
+}
+
+function randomTileSelect() {
+    tiles.forEach(tile => {
+        let pick = Math.random() < 0.5;
+        if (pick) {
+            selectTile(tile);
+        }
+    });
+    if (selectedTiles.length !== maxTiles) {
+        randomTileSelect();
+    }
+}
+
+function clearTileSelection() {
+    selectedTiles.forEach(tile => {
+        unselectTile(tile);
+    });
+}
 
 function handleAutoBets() {
     

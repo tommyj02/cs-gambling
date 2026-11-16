@@ -3,6 +3,9 @@
     --secondarycolor: #1c1c3f;
     --hovercolor: #242047;
     --secondaryhovercolor: rgb(16, 16, 46);
+    --tilestextcolor: #746e9c;
+    --selectedcolor: #444488;
+    --selectedhovercolor: #5555aa;
 }
 
 body{
@@ -27,6 +30,7 @@ button{
     line-height: 20px;
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 button[aria-pressed="true"] {
@@ -471,7 +475,7 @@ body.tiles-page {
 
 .tiles-title {
     text-align: center;
-    color: #746e9c;
+    color: var(--tilestextcolor);
 }
 
 .tiles-windows-container {
@@ -544,10 +548,14 @@ body.tiles-page {
     display: flex;
     justify-content: left;
     flex-direction: row;
-    margin: 10px 0;
+    
     padding: 10px;
     border-radius: 5px;
     gap: 10px;
+}
+
+.bet-amount{
+    color: var(--tilestextcolor);
 }
 
 .bet-amount-input {
@@ -734,6 +742,28 @@ body.tiles-page {
     height: auto;
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.tile:hover {
+    background-color: var(--hovercolor);
+    transition: background-color 0.2s ease, transform 0.5s ease;
+}
+
+.tile-selected {
+    background-color: var(--selectedcolor);
+    transition: background-color 0.1s ease, transform 0.1s ease;
+}
+
+.tile-selected:hover {
+    background-color: var(--selectedhovercolor);
+}
+
+.tile-number {
+    color: var(--maincolor);
 }
 
 
