@@ -45,6 +45,11 @@ export class User {
         saveData(this);
     }
 
+    deduct(amount) {
+        this.balance -= amount;
+        saveData(this);
+    }
+
     addItemToInventory(item) {
         this.inventory.addItem(item);
         saveData(this);

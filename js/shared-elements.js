@@ -15,6 +15,7 @@ async function loadSharedElements() {
 
     document.getElementById("header-container").innerHTML = headerHtml;
     document.getElementById("overlay-container").innerHTML = overlaysHtml;
+    document.dispatchEvent(new Event('shared-elements-loaded'));
 
     const script = document.createElement('script');
     script.src = 'js/main.js';

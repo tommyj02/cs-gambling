@@ -2,6 +2,7 @@
 
 import { Inventory, User } from './inventoryclasses.js';
 import { user, setUser } from './user-state.js';
+import { updateBalanceDisplay } from './update-displays.js';
 import './inventory.js';
 
 // HTML DOM elementit
@@ -13,8 +14,6 @@ const depositButton = document.getElementById('deposit-button');
 const accountButton = document.getElementById('account-button');
 const visaOverlay = document.getElementById('visa-overlay');
 const closeVisaOverlay = document.getElementById('close-visa-overlay');
-
-const balanceDisplay = document.getElementById('balance');
 
 const depositOverlay = document.getElementById('deposit-overlay');
 const closeDepositOverlay = document.getElementById('close-deposit-overlay');
@@ -128,7 +127,7 @@ submitDeposit.addEventListener('click', () => {
     addBalance(depositAmount);
     depositOverlay.hidden = true;
     visaOverlay.hidden = true;
-    depositCompleteMessage.textContent = `You have successfully deposited ${depositAmount.toFixed(2)}.`; 
+    depositCompleteMessage.textContent = `You have successfully deposited ${depositAmount.toFixed(2)} coins to your account.`; 
     localStorage.setItem('deposited', depositAmount.toFixed(2));
     depositCompleteOverlay.hidden = false;
 });
@@ -206,10 +205,7 @@ function addBalance(amount) {
     updateBalanceDisplay(user);
 }
 
-function updateBalanceDisplay(user) {
-    if (!user) return;
-    balanceDisplay.textContent = user.balance.toFixed(2); // Saldon display kahden desimaalin tarkkuudella
-}
+
 
 function updateAccountDisplay(user) {
     if(user) {

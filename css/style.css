@@ -7,6 +7,9 @@
     --selectedcolor: #444488;
     --selectedhovercolor: #5555aa;
     --hitcolor: #00ff22;
+    --emptyhitcolor: #746e9c;
+    --moneycolor: hsl(56, 100%, 57%);
+    --moneyhovercolor: hsl(56, 100%, 44%);
 }
 
 body{
@@ -71,12 +74,25 @@ button[aria-pressed="true"] {
     
 }
 
-#deposit-button{
+.deposit-button{
     margin-left: auto;
-    background-color: hsl(56, 100%, 57%);
-    
+    background-color: var(--moneycolor);
 }
 
+.deposit-button:hover {
+    background-color: var(--moneyhovercolor);
+}
+
+.deposit-button2{
+    background-color: var(--moneycolor);
+    color: #000000;
+    border: 0px;
+    padding: 10px 30px;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
 
 
 #games-dropdown option:checked{
@@ -672,7 +688,7 @@ body.tiles-page {
 }
 
 .start-button:hover[aria-pressed="false"] {
-    background-color: hsl(56, 100%, 44%);
+    background-color: var(--moneyhovercolor);
 }
 
 .manual-play-container {
@@ -701,7 +717,7 @@ body.tiles-page {
 }
 
 .play-button:hover {
-    background-color: hsl(56, 100%, 44%);
+    background-color: var(--moneyhovercolor);
 }
 
 .play-button[aria-pressed="true"] {
@@ -772,17 +788,63 @@ body.tiles-page {
     background-color: var(--hitcolor);
 }
 
+.tile-emptyhit {
+    background-color: var(--emptyhitcolor);
+    transition: background-color 0.5s ease, transform 0.2s ease;
+}
+
 #ball-canvas {
     position: absolute;
     z-index: 1;
-    top: 0;
+    top: 0px;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
 }
 
+.win-overlay{
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: 10px;
 
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.win-overlay[hidden] {
+    display: none;
+}
+
+.win-overlay-content {
+    
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 20%;
+    width: 20%;
+}
+
+#tiles-win-image {
+    max-width: 50px;
+    max-height: 50px;
+    margin: 0 auto;
+}
+
+#tiles-win-message {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--moneycolor);
+}
 
 
 
