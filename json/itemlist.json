@@ -1,8 +1,184 @@
 [
     {
         "id": 1,
+        "name": "Desert Eagle | Bronze Deco",
+        "value": 0.2,
+        "image": "images/deagle_bronze.png"
+    },
+    {
+        "id": 2,
+        "name": "Glock-18 | Blue Fissure",
+        "value": 2,
+        "image": "images/glock_fissure.png"
+    },
+    {
+        "id": 3,
+        "name": "M4A1-S | Blood Tiger",
+        "value": 6,
+        "image": "images/m4a1_blood_tiger.png"
+    },
+    {
+        "id": 4,
+        "name": "USP-S | The Traitor",
+        "value": 20,
+        "image": "images/usp_traitor.png"
+    },
+    {
+        "id": 5,
+        "name": "AK-47 | Inheritance",
+        "value": 50,
+        "image": "images/ak_inheritance.png"
+    },
+    {
+        "id": 6,
         "name": "Nomad Knife | Marble Fade",
         "value": 120,
-        "image": "images/nomad_knife_marble_fade.png"
+        "image": "images/nomad_marble.png"
+    },
+
+
+
+
+
+
+
+    {
+        "id": 7,
+        "name": "Five-SeveN | Flame Test",
+        "value": 0.2,
+        "image": "images/fn_flametest.png"
+    },
+    {
+        "id": 8,
+        "name": "Desert Eagle | Conspiracy",
+        "value": 20,
+        "image": "images/deagle_conspiracy.png"
+    },
+    {
+        "id": 9,
+        "name": "USP-S | Kill Confirmed",
+        "value": 60,
+        "image": "images/usp_kill.png"
+    },
+    {
+        "id": 10,
+        "name": "AK-47 | Neon Rider",
+        "value": 120,
+        "image": "images/ak_neon.png"
+    },
+    {
+        "id": 11,
+        "name": "AWP | Queen's Gambit",
+        "value": 250,
+        "image": "images/awp_queens.png"
+    },
+    {
+        "id": 12,
+        "name": "Karambit | Crimson Web",
+        "value": 800,
+        "image": "images/karambit_crimson.png"
+    },
+
+
+
+
+
+
+    {
+        "id": 13,
+        "name": "Tec-9 | Bamboozle",
+        "value": 2,
+        "image": "images/tec_bamboozle.png"
+    },
+    {
+        "id": 14,
+        "name": "MP9 | Mount Fuji",
+        "value": 7,
+        "image": "images/mp9_fuji.png"
+    },
+    {
+        "id": 15,
+        "name": "P90 | Shallow Grave",
+        "value": 25,
+        "image": "images/p90_shallow.png"
+    },
+    {
+        "id": 16,
+        "name": "AK-47 | Nightwish",
+        "value": 60,
+        "image": "images/ak_nightwish.png"
+    },
+    {
+        "id": 17,
+        "name": "M4A4 | The Emperor",
+        "value": 200,
+        "image": "images/m4a4_emperor.png"
+    },
+    {
+        "id": 18,
+        "name": "AWP | Sovereign Flame",
+        "value": 500,
+        "image": "images/awp_sovereign.png"
+    },
+    {
+        "id": 19,
+        "name": "Bayonet | Gamma Doppler (Emerald)",
+        "value": 1068,
+        "image": "images/bayonet_emerald.png"
+    },
+
+
+
+
+
+
+
+    {
+        "id": 20,
+        "name": "Desert Eagle | Mecha Industries",
+        "value": 5,
+        "image": "images/deagle_mecha.png"
+    },
+    {
+        "id": 21,
+        "name": "Glock-18 | Water Elemental",
+        "value": 18,
+        "image": "images/glock_water.png"
+    },
+    {
+        "id": 22,
+        "name": "P250 | See Ya Later",
+        "value": 80,
+        "image": "images/p250_later.png"
+    },
+    {
+        "id": 23,
+        "name": "M4A1-S | Hyper Beast",
+        "value": 120,
+        "image": "images/m4a1_hyper.png"
+    },
+    {
+        "id": 24,
+        "name": "M9 Bayonet | Tiger Tooth",
+        "value": 650,
+        "image": "images/m9_tiger.png"
+    },
+    {
+        "id": 25,
+        "name": "Butterfly Knife | Slaughter",
+        "value": 1400,
+        "image": "images/butterfly_slaughter.png"
+    },
+    {
+        "id": 26,
+        "name": "AWP | Dragon Lore",
+        "value": 8500,
+        "image": "images/awp_dlore.png"
+    },
+    {
+        "id": 27,
+        "name": "Karambit | Case Hardened (Blue Gem)",
+        "value": 1000000,
+        "image": "images/karambit_case.png"
     }
 ]
