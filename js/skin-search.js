@@ -39,6 +39,11 @@ skinSearch.addEventListener('input', () => {
                 }
             });
 
+            const closeButton = document.getElementById('close-skin-added-overlay');
+            closeButton.addEventListener('click', () => {
+                skinAddedOverlay.hidden = true;
+            });
+
             setTimeout(() => {
                 skinAddedOverlay.hidden = true;
             }, 2000);
